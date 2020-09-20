@@ -1,0 +1,18 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Shu Ding <g@shud.in>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "dependencies": {
+    "next": "^9.5.3",
+    "nextra": "^0.2.6",
+    "nextra-theme-blog": "^0.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
