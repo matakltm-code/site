@@ -1,6 +1,6 @@
 ---
 title: The Best Things
-date: 2019-7-15
+date: 2019/7/15
 ---
 
 # The Best Things

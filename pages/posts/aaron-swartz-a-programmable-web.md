@@ -1,6 +1,6 @@
 ---
 title: Notes on A Programmable Web by Aaron Swartz
-date: 2016-5-21
+date: 2016/5/21
 ---
 
 # Notes on A Programmable Web by Aaron Swartz

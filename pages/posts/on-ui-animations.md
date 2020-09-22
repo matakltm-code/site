@@ -1,6 +1,6 @@
 ---
 title: On UI Animations
-date: 2020-5-27
+date: 2020/5/27
 ---
 
 # On UI Animations
