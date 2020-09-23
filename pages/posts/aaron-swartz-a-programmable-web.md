@@ -1,9 +1,14 @@
 ---
 title: Notes on A Programmable Web by Aaron Swartz
 date: 2016/5/21
+description: At the time when I was getting into web development, I had the chance to read one of the most inspiring book about the web, Aaron Swartz's A Programmable Web. And it completely changed my mind. 
+tag: web development
+author: Shu
 ---
 
 # Notes on A Programmable Web by Aaron Swartz
+
+At the time when I was getting into web development, I had the chance to read one of the most inspiring book about the web, Aaron Swartz's A Programmable Web. And it completely changed my mind. 
 
 **Updated in 2017**: [@tommyjtl](https://github.com/tommyjtl), [@zimine](https://github.com/zimine) and I are currently helping translate this post into Simplified Chinese. Any [contributions](https://github.com/tommyjtl/the-programmable-web/tree/translation) are welcomed :)
 
@@ -14,13 +19,13 @@ Let's see if they can do it again.
 
 — Aaron
 
-Aaron’s post: [Building Programmable Web Sites by Aaron Swartz, 2009](http://www.cs.rpi.edu/~hendler/ProgrammableWebSwartz2009.html)
+Read Aaron's original post: [Building Programmable Web Sites by Aaron Swartz, 2009](http://www.cs.rpi.edu/~hendler/ProgrammableWebSwartz2009.html).
 
 ## Quotes About WWW
 
 1. “(the Internet) It should be kept open. It should be kept free.” – Steve Jobs
 2. “The third reason it’s very exciting is that Microsoft doesn’t own it and I don’t think they can. It’s the one thing in the industry that Microsoft can probably never own. I think one of the things that’s essential is that the government continue to fund the Internet as a public trust, as a public facility and remove any of these ridiculous notions of privatizing it that have been brought up. I don’t think they’re going to fly, thankfully.” – Steve Jobs
-3. Jacques Mattheij wrote an article, it’s like the *New Speak* in *1984* by George Orwell, but on the Internet.
+3. Jacques Mattheij wrote an article, about the web in 2050, which feels like the *New Speak* in George Orwell's *1984*.
 
 ## Quotes from Aaron’s Post
 
