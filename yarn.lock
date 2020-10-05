@@ -4000,10 +4000,10 @@ next@^9.5.3:
     webpack "4.44.1"
     webpack-sources "1.4.3"
 
-nextra-theme-blog@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-0.1.1.tgz#ae3bab4b27981c94b806750808f50327178b2748"
-  integrity sha512-3ulGk038ldQGHSy9PpPpUaXunpFLcfRfAO7hn3q6keKwaFwLhh42suVs0uHW0mA2pU6hKIaT9l4Dc2VW9pUM9A==
+nextra-theme-blog@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-0.1.2.tgz#2636a0f8c378a69d57c8b33d8875a5ee86f10c45"
+  integrity sha512-HzYmvfEkQnW0hABe7W70CtLdd9HSBUKNhh6qt1n8ESwJD0/iIypXCKG+AzdbMwoCozcdz3SXQ93JlcTbU3oBkA==
   dependencies:
     "@mdx-js/react" "^1.6.18"
     "@sindresorhus/slugify" "^1.1.0"
