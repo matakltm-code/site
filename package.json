@@ -9,7 +9,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "next": "^9.5.3",
+    "next": "^10.0.0",
     "nextra": "^0.2.6",
     "nextra-theme-blog": "^0.1.2",
     "react": "^16.13.1",
