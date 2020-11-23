@@ -3,6 +3,7 @@ const path = require('path')
 const RSS = require('rss')
 const matter = require('gray-matter')
 
+// @TODO: for now let's generate with all posts, unsorted
 async function generate() {
   const feed = new RSS({
     title: 'Shu Ding',
@@ -23,6 +24,8 @@ async function generate() {
       url: '/posts/' + name.replace(/\.mdx?/, ''),
       date: frontmatter.data.date,
       description: frontmatter.data.description,
+      categories: frontmatter.data.tag.split(', '),
+      author: frontmatter.data.author
     })
   }))
 
