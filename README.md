@@ -1,4 +1,4 @@
-# site
+# shud.in
 
 I decided to switch back to raw Markdown files for blogging. 
 
