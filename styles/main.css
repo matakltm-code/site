@@ -1,14 +1,21 @@
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Inter var';
   font-style: normal;
   font-weight: 100 900;
   font-display: block;
-  src: url(/fonts/Inter-roman.latin.var.woff2)
-    format('woff2');
+  src: url(/fonts/Inter-roman.latin.var.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter var';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: block;
+  src: url(/fonts/Inter-italic.latin.var.woff2) format('woff2');
+  font-named-instance: 'Italic';
 }
 
 body {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   -webkit-font-smoothing: subpixel-antialiased;
   font-feature-settings: 'case' 1, 'cpsp' 1, 'dlig' 1, 'cv01' 1, 'cv03' 1, 'cv04' 1;
   font-variation-settings: "wght" 450;
@@ -24,7 +31,7 @@ h2 {
   font-variation-settings: "wght" 750;
 }
 em {
-  font-variation-settings: "wght" 650;
+  font-variation-settings: "wght" 600;
 }
 
 @media screen and (min-device-pixel-ratio:1.5), screen and (min-resolution:1.5dppx) {
