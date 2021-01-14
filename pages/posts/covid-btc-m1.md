@@ -21,7 +21,7 @@ The obsession with information and connection just doesn't make me happier. I wa
 
 **Apple M1** is a new laptop chip shipped by Apple in 2020. It achieved significant improvements on [performance-per-watt](https://en.wikipedia.org/wiki/Performance_per_watt#:~:text=In%20computing%2C%20performance%20per%20watt,every%20watt%20of%20power%20consumed.). 
 
-As a web develoepr we talk about performance everyday but sadly it just feels not good enough, not even near. 
+As a web developer we talk about performance everyday but sadly it just feels not good enough, not even near.
 
 But our machines are [not slow](https://esbuild.github.io). When I was doing algorithm competitions ~10 years ago, an important metric I still remember was ~10<sup>9</sup> “calculations” per second in C++, with that old CPU. That’s a lot comparing to what we are doing in web today. I can create a complex shader that renders real-world 3D objects and rays at 120 fps, but it's so difficult to create a 30 fps web experience.
 
