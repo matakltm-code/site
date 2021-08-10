@@ -23,6 +23,8 @@ The obsession with information and connection just doesn't make me happier. I wa
 
 As a web developer we talk about performance everyday but sadly it just feels not good enough, not even near.
 
-But our machines are [not slow](https://esbuild.github.io). When I was doing algorithm competitions ~10 years ago, an important metric I still remember was ~10<sup>9</sup> “calculations” per second in C++, with that old CPU. That’s a lot comparing to what we are doing in web today. I can create a complex shader that renders real-world 3D objects and rays at 120 fps, but it's so difficult to create a 30 fps web experience.
+But our machines are [not slow](https://esbuild.github.io). When I was doing algorithm competitions ~10 years ago, an important metric I still remember was ~10<sup>9</sup> “calculations” per second in C++, with that old CPU. If your program takes longer than 1 second, you will get a 0 point.
 
-Although web development is so different and there're various reasons. However we still can do better and we should do better. All I want to say is [this](https://www.youtube.com/watch?v=pW-SOdj4Kkk).
+That’s a lot comparing to what we are doing in web today. I can create a complex shader that renders real-world 3D objects and rays at 120 fps, but it's so difficult to create a 30 fps web experience.
+
+Although web development is so different and there're various reasons. However we still can do better and we _should_ do better. All I want to say is [this](https://www.youtube.com/watch?v=pW-SOdj4Kkk).
