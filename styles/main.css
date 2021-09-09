@@ -110,3 +110,10 @@ img.next-image {
 .vercel-icon {
   font-family: sans-serif;
 }
+
+pre {
+  background-color: #f7f7f7 !important;
+}
+pre code {
+  display: block;
+}

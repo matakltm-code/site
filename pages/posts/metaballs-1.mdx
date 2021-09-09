@@ -1,0 +1,343 @@
+---
+title: From Shader to Metaball, Part Ⅰ
+date: 2021/8/28
+tag: code
+author: Shu
+description: Let’s talk about shaders this time.
+---
+
+# From Shader to Metaball, Part Ⅰ
+
+I started getting into creative coding since COVID-19 (you can find some of them [here](https://works.shud.in/creative-coding)). [Two months ago](https://twitter.com/shuding_/status/1414325136375877642) I did some research on visualizing randomly generated metaballs, and here's what I got:
+
+<video src="/images/metaballs.mp4" autoPlay muted loop playsInline />
+
+I also deployed it to **[metaballs.vercel.app](https://metaballs.vercel.app)**, so you can play around with it.
+
+In the meantime a lot of people reached out to me about this demo, and I thought it might be fun to write about it. So in my following blog posts I'll share how you can create the same thing, without too much knowledge about computer graphics.
+
+In this first part let's talk about _shaders_.
+
+## Shaders
+
+What are shaders? You probably already knew the **[tixy.land](https://tixy.land)** website created by [@aemkei](https://twitter.com/aemkei/status/1323399877611708416). From Martin’s own words:
+
+> Control the size and color of a 16x16 dot matrix with a single JavaScript function.
+
+The `tixy` function, is _almost_ a fragment shader. **It takes the coordinates of a screen pixel and returns the corresponding color of that pixel**. In short, it’s a “`(x, y) => color`” function.
+
+Of course you can also pass other parameters to the shader, such as mouse position, time, window size, etc. But overall this is a simple and powerful concept. There are hundreds of beautiful animations created with it you can found from that Twitter thread ([here](https://twitter.com/shuding_/status/1324763353533698049) is mine).
+
+### A Simple Example
+
+For example, we have the following _simplified_ shader function that returns the _brightness_ of that coordinate:
+
+```js
+// `x` and `y` range from 0 to 1, representing the coordinate of a pixel.
+// A number between 0 and 1 is returned, representing the brightness of it.
+function myShader(x, y) {
+  return x
+}
+```
+
+Say we’re running this shader function for each pixel of a 9×9 screen, it will return the following values for each pixel:
+
+export const DemoScreen = ({ size, scale = 1, header = true, fn }) => {
+  const rows = []
+  const displaySize = `min(${~~(42 * scale) + "px"}, ${80 / (size + 1)}vw)`
+  const negQuarterDisplaySize = `min(${-~~(10.5 * scale) + "px"}, ${
+    -20 / (size + 1)
+  }vw)`
+  for (let i = 0; i < size + 1; i++) {
+    const cols = []
+    for (let j = 0; j < size + 1; j++) {
+      cols.push(
+        <div key={j} className="block">
+          {fn(j / size, i / size)}
+        </div>
+      )
+    }
+    rows.push(cols)
+  }
+  return (
+    <div className="wrapper">
+      <div className="screen">
+        {header ? (
+          <div className="header">
+            <div className="coor corner">
+              <sub>y</sub>⟍<sup>x</sup>
+            </div>
+            {rows.map((_, i) => {
+              return (
+                <div key={`h-${i}`} className="coor">
+                  {i}/{size}
+                </div>
+              )
+            })}
+          </div>
+        ) : null}
+        {rows.map((r, i) => {
+          return (
+            <div key={i} className="row">
+              {header ? (
+                <div key={`r-${i}`} className="coor">
+                  {i}/{size}
+                </div>
+              ) : null}
+              {r.map((c) => {
+                return c
+              })}
+            </div>
+          )
+        })}
+      </div>
+      <style jsx>{`
+        .wrapper {
+          text-align: center;
+          padding: 1rem 0.5rem;
+          font-feature-settings: "frac";
+        }
+        .screen {
+          display: inline-block;
+          margin-left: ${negQuarterDisplaySize};
+          ${header
+            ? ""
+            : `border-top: 1px solid #ccc; border-left: 1px solid #ccc;`}
+        }
+        .row,
+        .header {
+          display: flex;
+          font-size: 0.7rem;
+        }
+        .row :global(div.block),
+        .coor {
+          flex: 0 0 ${displaySize};
+          width: ${displaySize};
+          height: ${displaySize};
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          display: flex;
+          place-content: center;
+          place-items: center;
+          overflow: hidden;
+        }
+        .row .coor,
+        .corner {
+          border-bottom: none;
+        }
+        .header .coor {
+          border-right: none;
+        }
+        .coor {
+          color: #aaa;
+          font-size: 1rem;
+          font-weight: 300;
+          font-variation-settings: "wght" 300;
+        }
+        .corner sup {
+          margin-left: -4px;
+          font-style: italic;
+        }
+        .corner sub {
+          bottom: -0.5em;
+          margin-right: -2px;
+          font-style: italic;
+        }
+        @media screen and (max-width: 400px) {
+          .row,
+          .header {
+            display: flex;
+            font-size: 0.55rem;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+<DemoScreen size={8} fn={(x, y) => x} />
+
+Since the return number represents the brightness of that pixel, the entire screen will look like this:
+
+<DemoScreen
+  size={8}
+  fn={(x, y) => {
+    const brightness = x * 100 + "%"
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: `hsl(0, 0%, ${brightness})`,
+        }}
+      />
+    )
+  }}
+/>
+
+So, we've created a simple gradient shader. Now if we change the shader function to return `(x+y)/2` instead of just `x`, you will get this (think about it!):
+
+<DemoScreen
+  size={8}
+  fn={(x, y) => {
+    const brightness = (x + y) * 50 + "%"
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: `hsl(0, 0%, ${brightness})`,
+        }}
+      />
+    )
+  }}
+/>
+
+### Disk
+
+To draw 3-dimentianal metaballs, we need to think about 2d first. What's the 2d reference of a 3d _ball_ ? Some might think it should be a circle, but actually a _ball_ in 2d should be a _disk_, and that's fundamentally different from a _circle_.
+
+In mathematics, a _ball_ is different from a _sphere_: a _ball_ is the volume space bounded by a _sphere_. Similarily, a _disk_ is the region in a plane bounded by a _circle_. So, we will be using the term _disk_ instead of _circle_ here.
+
+Why is this important? Because in shaders, something to keep in mind is we're usually tackling shapes with the "space" inside them, not just the "border" (will get this covered in future parts). Let's assume that there is a disk centered at `(0.5, 0.5)` on the screen. And this time we define each pixel's brightness with **the distance from the center of the disk to that pixel**:
+
+```js
+function myShader(x, y) {
+  return Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5))
+}
+```
+
+The value table should be:
+
+<DemoScreen
+  size={8}
+  fn={(x, y) =>
+    Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)).toFixed(2)
+  }
+/>
+
+And it looks like this:
+
+<DemoScreen
+  size={8}
+  fn={(x, y) => {
+    const brightness = Math.sqrt(
+      (x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)
+    ).toFixed(2)
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: `hsl(0, 0%, ${brightness * 100 + "%"})`,
+        }}
+      />
+    )
+  }}
+/>
+
+Since we use the distance to `(0.5, 0.5)` as the _brightness_ value, the pixels nearer to the screen center get darker.
+
+How can we draw a disk? It isn't hard to think about. If we choose `0.5` as the radius of our disk, we can simply return `0` as the brightness (black) if the distance is less or equal than `0.5`. Otherwise we will return `1` (white):
+
+```js
+function myShader(x, y) {
+  const d = Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)) - 0.5
+  return d > 0 ? 1 : 0
+}
+```
+
+Also we can refactor the code a bit:
+
+```js
+function distanceToDisk(x, y) {
+  return Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)) - 0.5
+}
+
+function myShader(x, y) {
+  return distanceToDisk(x, y) > 0 ? 1 : 0
+}
+```
+
+And we can see the shape of a disk (the numbers represent the `distanceToDisk` value):
+
+<DemoScreen
+  size={8}
+  fn={(x, y) => {
+    const v = Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)) - 0.5
+    const white = v > 0 ? 1 : 0
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          color: white ? "black" : "white",
+          backgroundColor: white ? "white" : "black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {Math.round(v * 100) / 100}
+      </div>
+    )
+  }}
+/>
+
+And if we make the screen larger, the shape will be smoother. This is how we draw a "2d ball" with shaders:
+
+<DemoScreen
+  scale={10 / 17}
+  size={16}
+  header={false}
+  fn={(x, y) => {
+    const brightness =
+      Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)) > 0.5 ? 1 : 0
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: `hsl(0, 0%, ${brightness * 100 + "%"})`,
+        }}
+      />
+    )
+  }}
+/>
+
+### Signed Distance Function (SDF)
+
+The `distanceToDisk` function above, is a SDF:
+
+```js
+function distanceToDisk(x, y) {
+  return Math.sqrt((x - 0.5) * (x - 0.5) + (y - 0.5) * (y - 0.5)) - 0.5
+}
+```
+
+Sometimes, we can write it as the following to make it reusable:
+
+```js
+function distanceToDisk(x, y, ox, oy, r) {
+  return Math.sqrt((x - ox) * (x - ox) + (y - oy) * (y - oy)) - r
+}
+```
+
+It's another simple and powerful concept that we will write about it in Part Ⅱ. But if you write JavaScript, I think you are already familiar with the idea:
+
+```js
+// Sort an array with numbers.
+arr.sort((a, b) => {
+  return a - b
+})
+```
+
+That function can be called "signed distance between 2 numbers" :-)
+
+## If You Want to Learn More
+
+- [https://tixy.land](https://tixy.land)
+- [https://en.wikipedia.org/wiki/Disk\_(mathematics)](<https://en.wikipedia.org/wiki/Disk_(mathematics)>)
+- [https://en.wikipedia.org/wiki/Signed_distance_function](https://en.wikipedia.org/wiki/Signed_distance_function)
+- [https://thebookofshaders.com](https://thebookofshaders.com)
+- [https://doersino.github.io/tixyz](https://doersino.github.io/tixyz)
