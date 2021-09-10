@@ -24,9 +24,9 @@ I started getting into creative coding since COVID-19 (you can find some of them
 
 <video src="/images/metaballs.mp4" autoPlay muted loop playsInline />
 
-I also deployed it to **[metaballs.vercel.app](https://metaballs.vercel.app)**, so you can play around with it.
+I also deployed it to [metaballs.vercel.app](https://metaballs.vercel.app), so you can play around with it.
 
-In the meantime a lot of people reached out to me about this demo, and I thought it might be fun to write about it. So in my following blog posts I’ll share how you can create the same thing, without too much knowledge about computer graphics.
+In the meantime a lot of people have reached out to me about the tech details, and I think it might be fun to write about it. So in my following blog posts I’ll share how you can create the same thing, without too much knowledge about computer graphics.
 
 In this first part let’s talk about _shaders_.
 
@@ -38,7 +38,7 @@ What are shaders? You probably already knew the **[tixy.land](https://tixy.land)
 
 The `tixy` function, is _almost_ a fragment shader. **It takes the coordinates of a screen pixel and returns the corresponding color of that pixel**. In short, it’s a “`(x, y) => color`” function.
 
-Of course you can also pass other parameters to the shader, such as mouse position, time, window size, etc. But overall this is a simple and powerful concept. There are hundreds of beautiful animations created with it you can found from that Twitter thread ([here](https://twitter.com/shuding_/status/1324763353533698049) is mine).
+Of course you can also pass other parameters to the shader, such as mouse position, time, window size, etc. But overall this is a simple and powerful concept. Hundreds of beautiful animations were created with it, you can find them from that [Twitter thread](https://twitter.com/aemkei/status/1323399877611708416) (and [here](https://twitter.com/shuding_/status/1324763353533698049) is mine).
 
 ### A Simple Example
 
@@ -107,7 +107,7 @@ export const DemoScreen = ({ size, scale = 1, header = true, fn }) => {
         .wrapper {
           text-align: center;
           padding: 1rem 0.5rem;
-          font-feature-settings: "frac";
+          font-feature-settings: "dlig", "kern", "frac", "ss01";
         }
         .screen {
           display: inline-block;
@@ -155,11 +155,12 @@ export const DemoScreen = ({ size, scale = 1, header = true, fn }) => {
           margin-right: -2px;
           font-style: italic;
         }
-        @media screen and (max-width: 400px) {
-          .row,
-          .header {
-            display: flex;
-            font-size: 0.55rem;
+        @media screen and (max-width: 440px) {
+          .row {
+            font-size: 0.6rem;
+          }
+          .coor {
+            font-size: 0.8rem;
           }
         }
       `}</style>

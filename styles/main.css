@@ -83,6 +83,9 @@ article.prose code {
   font-size: 0.95em;
   padding: 0 0.1em;
 }
+article.prose a {
+  word-break: break-word;
+}
 
 @media screen and (max-width: 480px) {
   article {
@@ -111,9 +114,12 @@ img.next-image {
   font-family: sans-serif;
 }
 
-pre {
+article.prose pre {
   background-color: #f7f7f7 !important;
+  letter-spacing: 0;
+  font-size: 0.8rem;
 }
-pre code {
-  display: block;
+article.prose pre code {
+  display: inline-block;
+  padding: 0;
 }
