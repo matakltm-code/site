@@ -6,17 +6,29 @@ author: Shu
 description: Let’s talk about shaders this time.
 ---
 
+import Head from "next/head"
+
+<Head>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:image"
+    content="https://shud.in/images/card-metaballs1.png"
+  />
+  <meta name="og:title" content="From Shader to Metaball, Part Ⅰ" />
+  <meta name="og:image" content="https://shud.in/images/card-metaballs1.png" />
+</Head>
+
 # From Shader to Metaball, Part Ⅰ
 
-I started getting into creative coding since COVID-19 (you can find some of them [here](https://works.shud.in/creative-coding)). [Two months ago](https://twitter.com/shuding_/status/1414325136375877642) I did some research on visualizing randomly generated metaballs, and here's what I got:
+I started getting into creative coding since COVID-19 (you can find some of them [here](https://works.shud.in/creative-coding)). [Two months ago](https://twitter.com/shuding_/status/1414325136375877642) I did some research on visualizing randomly generated metaballs, and here’s what I got as the result:
 
 <video src="/images/metaballs.mp4" autoPlay muted loop playsInline />
 
 I also deployed it to **[metaballs.vercel.app](https://metaballs.vercel.app)**, so you can play around with it.
 
-In the meantime a lot of people reached out to me about this demo, and I thought it might be fun to write about it. So in my following blog posts I'll share how you can create the same thing, without too much knowledge about computer graphics.
+In the meantime a lot of people reached out to me about this demo, and I thought it might be fun to write about it. So in my following blog posts I’ll share how you can create the same thing, without too much knowledge about computer graphics.
 
-In this first part let's talk about _shaders_.
+In this first part let’s talk about _shaders_.
 
 ## Shaders
 
@@ -175,7 +187,7 @@ Since the return number represents the brightness of that pixel, the entire scre
   }}
 />
 
-So, we've created a simple gradient shader. Now if we change the shader function to return `(x+y)/2` instead of just `x`, you will get this (think about it!):
+So, we’ve created a simple gradient shader. Now if we change the shader function to return `(x+y)/2` instead of just `x`, you will get this (think about it!):
 
 <DemoScreen
   size={8}
@@ -195,11 +207,11 @@ So, we've created a simple gradient shader. Now if we change the shader function
 
 ### Disk
 
-To draw 3-dimentianal metaballs, we need to think about 2d first. What's the 2d reference of a 3d _ball_ ? Some might think it should be a circle, but actually a _ball_ in 2d should be a _disk_, and that's fundamentally different from a _circle_.
+To draw 3-dimentianal metaballs, we need to think about 2d first. What’s the 2d reference of a 3d _ball_ ? Some might think it should be a circle, but actually a _ball_ in 2d should be a _disk_, and that’s fundamentally different from a _circle_.
 
 In mathematics, a _ball_ is different from a _sphere_: a _ball_ is the volume space bounded by a _sphere_. Similarily, a _disk_ is the region in a plane bounded by a _circle_. So, we will be using the term _disk_ instead of _circle_ here.
 
-Why is this important? Because in shaders, something to keep in mind is we're usually tackling shapes with the "space" inside them, not just the "border" (will get this covered in future parts). Let's assume that there is a disk centered at `(0.5, 0.5)` on the screen. And this time we define each pixel's brightness with **the distance from the center of the disk to that pixel**:
+Why is this important? Because in shaders, something to keep in mind is we’re usually tackling shapes with the “space” inside them, not just the “border” (will get this covered in future parts). Let’s assume that there is a disk centered at `(0.5, 0.5)` on the screen. And this time we define each pixel’s brightness with **the distance from the center of the disk to that pixel**:
 
 ```js
 function myShader(x, y) {
@@ -238,7 +250,7 @@ And it looks like this:
 
 Since we use the distance to `(0.5, 0.5)` as the _brightness_ value, the pixels nearer to the screen center get darker.
 
-How can we draw a disk? It isn't hard to think about. If we choose `0.5` as the radius of our disk, we can simply return `0` as the brightness (black) if the distance is less or equal than `0.5`. Otherwise we will return `1` (white):
+How can we draw a disk? It isn’t hard to think about. If we choose `0.5` as the radius of our disk, we can simply return `0` as the brightness (black) if the distance is less or equal than `0.5`. Otherwise we will return `1` (white):
 
 ```js
 function myShader(x, y) {
@@ -284,7 +296,7 @@ And we can see the shape of a disk (the numbers represent the `distanceToDisk` v
   }}
 />
 
-And if we make the screen larger, the shape will be smoother. This is how we draw a "2d ball" with shaders:
+And if we make the screen larger, the shape will be smoother. This is how we draw a “2d ball” with shaders:
 
 <DemoScreen
   scale={10 / 17}
@@ -307,7 +319,7 @@ And if we make the screen larger, the shape will be smoother. This is how we dra
 
 ### Signed Distance Function (SDF)
 
-The `distanceToDisk` function above, is a SDF:
+The `distanceToDisk` function above, is a **SDF**:
 
 ```js
 function distanceToDisk(x, y) {
@@ -315,7 +327,7 @@ function distanceToDisk(x, y) {
 }
 ```
 
-Sometimes, we can write it as the following to make it reusable:
+It simply returns the signed distance from a coordinate to the border of a given disk. Sometimes, we can write it as the following to make it reusable:
 
 ```js
 function distanceToDisk(x, y, ox, oy, r) {
@@ -323,7 +335,7 @@ function distanceToDisk(x, y, ox, oy, r) {
 }
 ```
 
-It's another simple and powerful concept that we will write about it in Part Ⅱ. But if you write JavaScript, I think you are already familiar with the idea:
+**SDF** is another simple and powerful concept that we will write about it in Part Ⅱ. But if you write JavaScript, I think you are already familiar with the idea:
 
 ```js
 // Sort an array with numbers.
@@ -332,7 +344,7 @@ arr.sort((a, b) => {
 })
 ```
 
-That function can be called "signed distance between 2 numbers" :-)
+And we are calling it “signed distance from `b` to `a`” :-)
 
 ## If You Want to Learn More
 
