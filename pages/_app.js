@@ -27,6 +27,6 @@ export default function Nextra({ Component, pageProps }) {
       function gtag(){dataLayer.push(arguments)}
       gtag('js',new Date)
       gtag('config','UA-55182697-1')
-    />
+    ` }} />
   </>
 }
