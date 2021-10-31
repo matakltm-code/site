@@ -22,7 +22,16 @@ import Head from "next/head"
 
 I started getting into creative coding since COVID-19 (you can find some of them [here](https://works.shud.in/creative-coding)). [Two months ago](https://twitter.com/shuding_/status/1414325136375877642) I did some research on visualizing randomly generated metaballs, and here’s what I got as the result:
 
-<video src="/images/metaballs.mp4" autoPlay muted loop playsInline />
+<div style={{ paddingBottom: "56.25%", position: "relative" }}>
+  <video
+    src="/images/metaballs.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    style={{ position: "absolute", margin: 0 }}
+  />
+</div>
 
 I also deployed it to [metaballs.vercel.app](https://metaballs.vercel.app), so you can play around with it.
 
@@ -114,7 +123,7 @@ export const DemoScreen = ({ size, scale = 1, header = true, fn }) => {
           margin-left: ${negQuarterDisplaySize};
           ${header
             ? ""
-            : `border-top: 1px solid #ccc; border-left: 1px solid #ccc;`}
+            : `border-top: 1px solid #ddd; border-left: 1px solid #ddd;`}
         }
         .row,
         .header {
@@ -126,8 +135,8 @@ export const DemoScreen = ({ size, scale = 1, header = true, fn }) => {
           flex: 0 0 ${displaySize};
           width: ${displaySize};
           height: ${displaySize};
-          border-right: 1px solid #ccc;
-          border-bottom: 1px solid #ccc;
+          border-right: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
           display: flex;
           place-content: center;
           place-items: center;

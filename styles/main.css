@@ -117,7 +117,7 @@ img.next-image {
 article.prose pre {
   background-color: #f7f7f7 !important;
   letter-spacing: 0;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
 }
 article.prose pre code {
   display: inline-block;
