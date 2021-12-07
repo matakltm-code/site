@@ -23,12 +23,35 @@ body {
     "cv03" 1, "cv04" 1;
   font-variation-settings: "wght" 450;
   font-variant: common-ligatures contextual;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+  background-color: #fcfcfc;
+}
+
+*::selection {
+  background: #dce8ed;
+}
+
+a {
+  text-underline-position: from-font;
+  text-decoration-skip-ink: all;
+  text-decoration-color: #a5adb1;
+  text-underline-offset: -1px;
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  transition: opacity 0.2s ease;
+}
+a:hover {
+  opacity: 0.85;
 }
 
 b,
 strong {
   font-variation-settings: "wght" 680;
+}
+
+.prose blockquote {
+  color: #5a5a5a;
+  letter-spacing: -0.01em;
 }
 
 h3,
@@ -71,7 +94,7 @@ article.prose {
 }
 
 article.md\:prose h1 {
-  font-size: 2em;
+  font-size: 1.45em;
   margin-bottom: 0.4em;
 }
 
@@ -85,6 +108,7 @@ article.prose code {
 }
 article.prose a {
   word-break: break-word;
+  color: #5d676a;
 }
 
 @media screen and (max-width: 480px) {
@@ -122,4 +146,6 @@ article.prose pre {
 article.prose pre code {
   display: inline-block;
   padding: 0;
+  color: #545454;
+  font-size: 0.9em;
 }
