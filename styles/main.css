@@ -59,7 +59,11 @@ strong {
 }
 
 .dark .dark\:prose-dark hr {
-  border-color: #44484a;
+  border-color: #4b4f50;
+}
+
+.dark .dark\:prose-dark ul > li::before {
+  background-color: #4b4f50;
 }
 
 .post-item p.post-item-desc {
@@ -156,4 +160,11 @@ article.prose pre code {
   padding: 0;
   color: #545454;
   font-size: 0.9em;
+}
+
+.dark .dark\:prose-dark pre {
+  background-color: #4b4f50 !important;
+}
+.dark article.prose pre code {
+  color: #e9e9e9;
 }
