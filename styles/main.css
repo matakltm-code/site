@@ -168,3 +168,6 @@ article.prose pre code {
 .dark article.prose pre code {
   color: #e9e9e9;
 }
+.dark .dark\:prose-dark blockquote {
+  border-left-color: #4b4f50;
+}
