@@ -8,7 +8,8 @@ description: A list of the best things. Carefully chosen.
 # The Best Things
 
 [When We Build - Wilson Miner](https://vimeo.com/34017777)  
-[I Love the University - Aaron Swartz](http://www.aaronsw.com/weblog/visitingmit)
+[I Love the University - Aaron Swartz](http://www.aaronsw.com/weblog/visitingmit)  
+[An Apology for Roger Eber - Brian Moriarty](https://youtu.be/cvZhRin-plA)
 
 [On the Spectrum of Abstraction - Cheng Lou](https://www.youtube.com/watch?v=mVVNJKv9esE)  
 [Visualizing Algorithms - Mike Bostock](https://bost.ocks.org/mike/algorithms)  
